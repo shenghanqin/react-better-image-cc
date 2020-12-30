@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { getWebpSupport } from './image-utils'
+import { getImgByWidth, getWebpByWidth, getWebpSupport } from './image-utils'
 
 const BETTER_CLASS = `xxl-better-image`
 
@@ -14,6 +14,10 @@ interface UIProps {
    */
   src: string
   /**
+   * 图片的最大宽度
+   */
+  maxImageWidth: number
+  /**
    * 图片宽度
    */
   width?: number
@@ -22,17 +26,13 @@ interface UIProps {
    */
   height?: number
   /**
-   * 七牛图片的最大宽度
-   */
-  maxImageWidth?: number
-  /**
    * 图片高宽比 height / width
    */
   ratio?: number
   /**
    * 是否启用webp
    */
-  enableWep?: boolean
+  enableWebp?: boolean
   /**
    * 禁用blur直接加载大图
    */
@@ -59,7 +59,7 @@ interface UIState {
 export default class BetterImage extends React.Component<UIProps, UIState> {
   static defaultProps = {
     src: `https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png`,
-    enableWep: true,
+    enableWebp: true,
     className: ''
   }
 
@@ -83,7 +83,7 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
         this._intersectionObserver = new IntersectionObserver(
           (entries) => {
             if (entries[0].intersectionRatio > 0) {
-              this.loadImage()
+              this.loadOriginImage()
             }
           },
           {
@@ -104,7 +104,7 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
   }
 
   // 加载图片
-  loadImage = () => {
+  loadOriginImage = () => {
     // 加载成功后，无需重复加载
     const { isLoaded } = this.state
     if (isLoaded) return
@@ -121,18 +121,12 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
     img.src = this.compressImage()
   }
 
-  // 计算七牛云所需图片
+  // 计算所需图片
   compressImage = () => {
-    const { src, maxImageWidth, enableWep } = this.props
-    let compressedSrc = `${src}?imageView2/2`
-    if (maxImageWidth) {
-      compressedSrc = `${compressedSrc}/w/${maxImageWidth}`
-    }
-
-    if (getWebpSupport() && enableWep) {
-      compressedSrc = `${compressedSrc}/format/webp/ignore-error/1`
-    }
-    return compressedSrc
+    const { src, maxImageWidth, enableWebp } = this.props
+    return enableWebp && getWebpSupport()
+      ? getWebpByWidth(src, maxImageWidth)
+      : getImgByWidth(src, maxImageWidth)
   }
 
   render() {
