@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { ExampleComponent } from '@xiaoxili/react-better-image-cc'
-import '@xiaoxili/react-better-image-cc/dist/index.css'
+import BetterImage from '@xiaoxili/react-better-image-cc'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return <BetterImage src="https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png" maxImageWidth={300} />
 }
 
 export default App
