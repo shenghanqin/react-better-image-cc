@@ -11,42 +11,42 @@ const blur = 'imageMogr2/thumbnail/30x30/blur/3x5'
 
 interface UIProps {
   /**
-  * 图片地址
-  */
+   * 图片地址
+   */
   src: string
   /**
-  * 图片宽度 
-  */
+   * 图片宽度
+   */
   width?: number
   /**
-  * 图片高度 
-  */
+   * 图片高度
+   */
   height?: number
   /**
-  * 七牛图片的最大宽度
-  */
+   * 七牛图片的最大宽度
+   */
   maxImageWidth?: number
   /**
-  * 图片高宽比 h / w
-  */
+   * 图片高宽比 height / width
+   */
   ratio?: number
   /**
-  * 是否启用webp
-  */
+   * 是否启用webp
+   */
   enableWep?: boolean
   /**
-  * 禁用blur直接加载大图
-  */
+   * 禁用blur直接加载大图
+   */
   disableBlur?: boolean
   /**
    * 自定义 ClassName
    */
   className?: string
   /**
-  * 用来扩展或缩小rootBounds这个矩形的大小
-  * 从而影响intersectionRect交叉区域的大小
-  * 它使用CSS的定义方法，比如10px 20px 30px 40px，表示 top、right、bottom 和 left 四个方向的值
-  */
+   * 用来扩展或缩小rootBounds这个矩形的大小
+   * 从而影响intersectionRect交叉区域的大小
+   * 它使用CSS的定义方法，比如10px 20px 30px 40px，表示 top、right、bottom 和 left 四个方向的值
+   */
   rootMargin?: string
 }
 
@@ -58,6 +58,11 @@ interface UIState {
 }
 
 export default class BetterImage extends React.Component<UIProps, UIState> {
+  static defaultProps = {
+    src: `https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png`,
+    enableWep: true,
+    className: ''
+  }
 
   _intersectionObserver: any
   imageWrapRef: any
@@ -208,3 +213,4 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
     )
   }
 }
+
