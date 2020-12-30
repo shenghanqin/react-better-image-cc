@@ -1,13 +1,12 @@
 /**
  * 图片模块
- * @module utils/img-utils
-*/
+ */
 
 /**
  * 判断浏览器是否兼容 Webp 格式图片
  */
 let hasWebP = false
-function checkWebp () {
+function checkWebp() {
   var img = new Image()
   img.onload = function () {
     hasWebP = !!(img.height > 0 && img.width > 0)
@@ -15,17 +14,17 @@ function checkWebp () {
   img.onerror = function () {
     hasWebP = false
   }
-  img.src = 'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA='
+  img.src =
+    'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA='
 }
 
 checkWebp()
 
 export const getWebpSupport = () => hasWebP
 
-
 // 这个方法，不兼容Safari浏览器，所以改用了加载webp图片的方式
 // Safari 14支持webp格式，但dataUrl中还是 image/png
-export function checkOldWebP() {
+export function checkOldWebP(): boolean {
   console.log('hasWebP', hasWebP)
   const ele = document.createElement('canvas')
   if (ele && typeof ele.toDataURL === 'function') {
@@ -40,8 +39,8 @@ export function checkOldWebP() {
  * @param {string} url 图片地址
  * @returns {string} 获取的源图片地址
  */
-export function getOriginImgUrl(url = '') {
-  let originUrl = url.split('?').length > 0 ? url.split('?')[0] : url
+export function getOriginImgUrl(url = ''): string {
+  const originUrl = url.split('?').length > 0 ? url.split('?')[0] : url
 
   return originUrl || ''
 }
@@ -55,9 +54,13 @@ export function getOriginImgUrl(url = '') {
  * @param {string} prefix 拼接的前缀，默认为 `?imageView2/2/w/`
  * @returns {string} 根据参数拼接的新图片地址
  */
-export function getImgByWidth(url: string, maxWidth: number, prefix: string = '?imageView2/2/w/') {
-  let origin = getOriginImgUrl(url)
-  return `${origin}${prefix}${Math.ceil(maxWidth)}`
+export function getImgByWidth(
+  url: string,
+  maxWidth: number,
+  prefix: string = '?imageView2/2/w/'
+): string {
+  const originUrl = getOriginImgUrl(url)
+  return `${originUrl}${prefix}${Math.ceil(maxWidth)}`
 }
 
 /**
@@ -70,8 +73,14 @@ export function getImgByWidth(url: string, maxWidth: number, prefix: string = '?
  * @param {string} prefix 拼接的前缀，默认为 `?imageView2/2/w/`
  * @returns {string} 根据参数拼接的新图片地址
  */
-export function getWebpByWidth(url: string, maxWidth: number, prefix: string = '?imageView2/2/w/') {
-  let origin = getOriginImgUrl(url)
+export function getWebpByWidth(
+  url: string,
+  maxWidth: number,
+  prefix: string = '?imageView2/2/w/'
+): string {
+  const originUrl = getOriginImgUrl(url)
 
-  return `${origin}${prefix}${Math.ceil(maxWidth)}${hasWebP ? '/format/webp/ignore-error/1' : ''}`
+  return `${originUrl}${prefix}${Math.ceil(maxWidth)}${
+    hasWebP ? '/format/webp/ignore-error/1' : ''
+  }`
 }
