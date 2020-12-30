@@ -1,11 +1,10 @@
 import * as React from 'react'
-// import styles from './styles.module.css'
 import { getWebpSupport } from './image-utils'
 
 const BETTER_CLASS = `xxl-better-image`
 
 // 在 IE 浏览器上都不支持 IntersectionObserver
-const isSupportIntersectionObserver = window.IntersectionObserver
+const isHaveIntersectionObserver = !!window.IntersectionObserver
 
 const blur = 'imageMogr2/thumbnail/30x30/blur/3x5'
 
@@ -77,25 +76,29 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
   componentDidMount() {
     const { rootMargin, disableBlur } = this.props
     // 判断是否支持图片监测
-    if (isSupportIntersectionObserver) {
+    if (isHaveIntersectionObserver) {
       // 判断是否出现占位图
       if (!disableBlur) {
-
         // 设置图片监测
-        this._intersectionObserver = new IntersectionObserver((entries) => {
+        this._intersectionObserver = new IntersectionObserver(
+          (entries) => {
             if (entries[0].intersectionRatio > 0) {
               this.loadImage()
             }
-          }, {
-          rootMargin,
-          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
-        })
+          },
+          {
+            rootMargin,
+            threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
+          }
+        )
 
         this._intersectionObserver.observe(this.imageWrapRef)
       }
     } else {
       if (console.log) {
-        console.log(`BetterImage 组件需要引入“intersection-observer”依赖才能完整使用`)
+        console.log(`
+          BetterImage 组件需要引入“intersection-observer”依赖才能完整使用
+        `)
       }
     }
   }
@@ -137,7 +140,7 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
     const { isLoaded } = this.state
     const imageUrl = this.compressImage()
 
-    const showBlurUrl = isSupportIntersectionObserver && !disableBlur && !isLoaded
+    const showBlurUrl = isHaveIntersectionObserver && !disableBlur && !isLoaded
     const renderImageSrc = showBlurUrl ? `${src}?${blur}` : imageUrl
 
     if (!(ratio || (width && height))) {
@@ -151,7 +154,6 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
         />
       )
     }
-
 
     // 预先占位 缩略图
     if (showBlurUrl) {
@@ -213,4 +215,3 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
     )
   }
 }
-
