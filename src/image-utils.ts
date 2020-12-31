@@ -6,7 +6,15 @@
  * 判断浏览器是否兼容 Webp 格式图片
  */
 let hasWebP = false
+const uaStr = window.navigator.userAgent.toLowerCase()
 function checkWebp() {
+  if (uaStr.includes('iphone') || uaStr.includes('ipad') || (uaStr.includes('macintosh') && uaStr.includes('version/'))) {
+    checkLoadWebp()
+    return
+  }
+  hasWebP = checkCanvasWebP()
+}
+export function checkLoadWebp() {
   var img = new Image()
   img.onload = function () {
     console.log('loaded2')
@@ -19,6 +27,8 @@ function checkWebp() {
   img.src =
     'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA='
 }
+
+
 
 checkWebp()
 

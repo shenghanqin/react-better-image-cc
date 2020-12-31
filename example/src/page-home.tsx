@@ -73,11 +73,18 @@ class App extends React.Component<Props, State> {
     )
   }
   componentDidMount() {
-    setTimeout(() => {
+    console.log('getWebpSupport()', getWebpSupport())
+    if (getWebpSupport()) {
       this.setState({
-        isSupportWebp: getWebpSupport()
-      })
-    });    
+        isSupportWebp: true
+      });
+    } else {
+      setTimeout(() => {
+        this.setState({
+          isSupportWebp: getWebpSupport()
+        })
+      }, 1500);
+    }
   }
 
   onSliderItemChange = () => {
@@ -113,10 +120,12 @@ class App extends React.Component<Props, State> {
                   <th>通过加载 Webp 图片</th>
                 </tr>
               </thead>
-              <tr>
-                <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
-                <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
+                  <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
+                </tr>
+              </tbody>
             </table>
             <h3>设备信息</h3>
             <table>
@@ -127,11 +136,13 @@ class App extends React.Component<Props, State> {
                   <th>浏览器名称及版本</th>
                 </tr>
               </thead>
-              <tr>
-                <td>{device.name}</td>
-                <td>{os.name} {os.version}</td>
-                <td>{browser.name} {browser.fullVersion}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>{device.name}</td>
+                  <td>{os.name} {os.version}</td>
+                  <td>{browser.name} {browser.fullVersion}</td>
+                </tr>
+              </tbody>
             </table>
             <table>
               <thead>
@@ -140,10 +151,12 @@ class App extends React.Component<Props, State> {
                   <th>页面宽高</th>
                 </tr>
               </thead>
-              <tr>
-                <td>screen.width： {window.screen.width} screen.height：{window.screen.height}</td>
-                <td>innerWidth：{window.innerWidth} innerHeight：{window.innerHeight}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>screen.width： {window.screen.width} screen.height：{window.screen.height}</td>
+                  <td>innerWidth：{window.innerWidth} innerHeight：{window.innerHeight}</td>
+                </tr>
+              </tbody>
             </table>
             <div onClick={this.copyToClipboard.bind(this, uaStr)}>
               <h2>当前设备 UserAgent（点击可复制）</h2>
@@ -173,10 +186,10 @@ class App extends React.Component<Props, State> {
               imageList.map((item, index) => {
                 return (
                   <div key={index} className='item'>
-                    <div key={index} className='image-now'>
+                    <div className='image-now'>
                       <BetterImage ratio={9 / 16} src={item.picUrl} maxImageWidth={(isPCMode ? 1200 : 600) + getRandom()} />
                     </div>
-                    <div key={index} className='item-main'>
+                    <div className='item-main'>
                       <h3>标题</h3>
                       <p>图片描述：小溪里棒棒哒！</p>
                     </div>
@@ -193,10 +206,10 @@ class App extends React.Component<Props, State> {
               imageList.map((item, index) => {
                 return (
                   <div key={index} className='item'>
-                    <div key={index} className='image-now'>
+                    <div className='image-now'>
                       <BetterImage width={200} height={112} src={item.picUrl} maxImageWidth={(isPCMode ? 800 : 400) + getRandom()} />
                     </div>
-                    <div key={index} className='item-main'>
+                    <div className='item-main'>
                       <h3>标题</h3>
                       <p>图片描述：小溪里棒棒哒！</p>
                     </div>

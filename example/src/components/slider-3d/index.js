@@ -1,8 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import BetterImage from '@xiaoxili/react-better-image-cc';
-
-
 import './styles.scss'
 
 var cx = require('classnames')
@@ -14,7 +11,7 @@ const DIRECTION = {
   LTR: 1
 }
 
-export default class SliderShow extends React.PureComponent {
+export default class Slider3D extends React.PureComponent {
   static propTypes = {
 
     /**
@@ -78,7 +75,7 @@ export default class SliderShow extends React.PureComponent {
      * direction: 轮播切换方向
      * @type string
      */
-    direction:  PropTypes.string
+    direction:  PropTypes.number
   }
   /**
    * 属性默认值

@@ -3,7 +3,8 @@ import {
   getImgByWidth,
   getWebpByWidth,
   getWebpSupport,
-  checkCanvasWebP
+  checkCanvasWebP,
+  checkLoadWebp,
 } from './image-utils'
 
 const BETTER_CLASS = `xxl-better-image`
@@ -215,4 +216,4 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
   }
 }
 
-export { getImgByWidth, getWebpByWidth, getWebpSupport, checkCanvasWebP }
+export { getImgByWidth, getWebpByWidth, getWebpSupport, checkCanvasWebP, checkLoadWebp }
