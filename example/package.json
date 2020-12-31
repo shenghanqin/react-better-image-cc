@@ -20,7 +20,7 @@
     "@types/react-dom": "^16.9.7",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "@xiaoxili/react-better-image-cc": "file:..",
+    "@xiaoxili/react-better-image-cc": "link:..",
     "@xiaoxili/react-ui-mode-cc": "^0.2.0",
     "babel-eslint": "^10.0.3",
     "clipboard-polyfill": "^3.0.1",

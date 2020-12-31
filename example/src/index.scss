@@ -1,4 +1,5 @@
 @import './constants.scss';
+@import './markdown.scss';
 
 sub, sup {
   line-height: 0;
@@ -89,16 +90,17 @@ code {
 }
 
 .page-container {
+  width: 100%;
   max-width: $xxl-max-body-width-center;
   margin: 0 auto;
   padding: 10px;
   flex: 1;
 }
 
-.page-container h2 {
-  font-size: 1em;
-  margin: 20px 0 10px;
-}
+// .page-container h2 {
+//   font-size: 1em;
+//   margin: 20px 0 10px;
+// }
 
 .page-mode-pc {
   .page-container {

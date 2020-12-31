@@ -1,5 +1,10 @@
 import * as React from 'react'
-import { getImgByWidth, getWebpByWidth, getWebpSupport } from './image-utils'
+import {
+  getImgByWidth,
+  getWebpByWidth,
+  getWebpSupport,
+  checkCanvasWebP
+} from './image-utils'
 
 const BETTER_CLASS = `xxl-better-image`
 
@@ -209,3 +214,5 @@ export default class BetterImage extends React.Component<UIProps, UIState> {
     )
   }
 }
+
+export { getImgByWidth, getWebpByWidth, getWebpSupport, checkCanvasWebP }

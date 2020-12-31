@@ -9,9 +9,11 @@ let hasWebP = false
 function checkWebp() {
   var img = new Image()
   img.onload = function () {
+    console.log('loaded2')
     hasWebP = !!(img.height > 0 && img.width > 0)
   }
   img.onerror = function () {
+    console.log('loaded error')
     hasWebP = false
   }
   img.src =
@@ -24,8 +26,7 @@ export const getWebpSupport = () => hasWebP
 
 // 这个方法，不兼容Safari浏览器，所以改用了加载webp图片的方式
 // Safari 14支持webp格式，但dataUrl中还是 image/png
-export function checkOldWebP(): boolean {
-  console.log('hasWebP', hasWebP)
+export function checkCanvasWebP(): boolean {
   const ele = document.createElement('canvas')
   if (ele && typeof ele.toDataURL === 'function') {
     const dataUrl = ele.toDataURL('image/webp') || ''
