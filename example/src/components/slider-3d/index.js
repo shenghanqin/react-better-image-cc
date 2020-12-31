@@ -219,7 +219,7 @@ export default class SliderShow extends React.PureComponent {
                       'left-image-item': source.length > 4 && ((indexActive === 0 && index === size - 2) || (indexActive === 1 && index === size - 1) || (indexActive > 1 && index === indexActive - 2)),
                       'right-image-item': source.length > 4 && ((indexActive === size - 1 && index === 1) || (indexActive === size - 2 && index === 0) || (indexActive < size - 2 && index === indexActive + 2))
                     })}>
-                      <BetterImage className={cx('image-item-better')} ratio={1} maxImageWidth={1000} src={item.picUrl} disableBlur={true} />
+                      <img className={cx('image-item-better')} src={item.picUrl} alt={''}/>
                     </a>
                   )
                 })

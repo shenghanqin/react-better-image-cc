@@ -7,12 +7,40 @@ import * as clipboard from 'clipboard-polyfill/text'
 import Page from './components/page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import BetterImage, { checkCanvasWebP, getWebpSupport } from '@xiaoxili/react-better-image-cc';
+import BetterImage, { checkCanvasWebP, getWebpByWidth, getWebpSupport } from '@xiaoxili/react-better-image-cc';
 import Slider3D from "./components/slider-3d";
+import SliderMobile from "./components/slider-mobile";
 
 const detector = require('detector');
 
 const uaStr = window.navigator.userAgent;
+
+const imageList = [
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/20200730093122.png'
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/20200730093044.png'
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/20200730093000.png',
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/8cf1374295bdb5f25f9b18acfd28d4c1-ef065d.png'
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/85b738b7a0b099e54325a44a913ec107-cc7aac.png',
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/308a1143638b41bd61dcdb967af29636-2e5225.png',
+  },
+  {
+    picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/a0ceda47c4874755230e5322054b1190-989029.jpg'
+  }
+]
 
 interface Props {
   isPCMode ?: boolean
@@ -21,9 +49,6 @@ interface Props {
 interface State {
   isSupportWebp?: boolean
 }
-
-// const uaStr = window.navigator.userAgent
-
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
@@ -66,17 +91,8 @@ class App extends React.Component<Props, State> {
     const { isSupportWebp } = this.state
     const { browser, os, device } = detector
 
-    const carousel = [
-      {
-        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
-      },
-      {
-        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
-      },
-      {
-        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
-      },
-    ]
+
+    const carousel = imageList.map(item => ({...item, picUrl: getWebpByWidth(item.picUrl, isPCMode ? 1000 : 750)}))
 
     return (
       <Page
@@ -85,12 +101,7 @@ class App extends React.Component<Props, State> {
         isPCMode={isPCMode}
       >
         <div className='page-container'>
-          <div className='slider-banner'>
-            <Slider3D source={carousel} isCascade={false} onHandleClick={this.onSliderItemClick} onItemChange={this.onSliderItemChange} />
-          </div>
-          <BetterImage width={200} height={150} src="https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png" maxImageWidth={300} />
           <div className='markdown-body'>
-            <hr />
             <h2>Webp 基础判断</h2>
             <h3>是否支持 Webp</h3>
             <table>
@@ -136,8 +147,63 @@ class App extends React.Component<Props, State> {
               <h2>当前设备 UserAgent（点击可复制）</h2>
               <div style={{ wordBreak: 'break-all' }}>{uaStr}</div>
             </div>
-           
+            <hr />
+            <h2>图片懒加载组件</h2>
+            <h3>轮播图示意图</h3>
+            <p>使用 <code>getWebpByWidth('图片地址', 1000)</code> 获取 Webp 图片。</p>
+            {
+              isPCMode
+              ? (
+                <div className='slider-banner'>
+                    <Slider3D
+                      source={carousel}
+                      />
+                  </div>
+                )
+                : <SliderMobile source={carousel} />
+              }
+            <p>PS：电脑端为 3D 轮播；手机上为平铺轮播。</p>
+            <hr />
+            <h3>图片列表，一行多列</h3>
           </div>
+          <div className='image-list-1'>
+            {
+              imageList.map((item, index) => {
+                return (
+                  <div key={index} className='item'>
+                    <div key={index} className='image-now'>
+                      <BetterImage ratio={9 / 16} src={item.picUrl} maxImageWidth={isPCMode ? 1200 : 600} />
+                    </div>
+                    <div key={index} className='item-main'>
+                      <h3>标题</h3>
+                      <p>图片描述：小溪里棒棒哒！</p>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+          <div className='markdown-body'>
+            <h3>图片列表，一行多列</h3>
+          </div>
+          <div className='image-list-2'>
+            {
+              imageList.map((item, index) => {
+                return (
+                  <div key={index} className='item'>
+                    <div key={index} className='image-now'>
+                      <BetterImage width={200} height={112} src={item.picUrl} maxImageWidth={isPCMode ? 800 : 400} />
+                    </div>
+                    <div key={index} className='item-main'>
+                      <h3>标题</h3>
+                      <p>图片描述：小溪里棒棒哒！</p>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+          
           
         </div>
         <ToastContainer position="bottom-center" />
