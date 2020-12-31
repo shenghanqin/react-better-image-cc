@@ -64,8 +64,23 @@ class App extends React.Component<Props, State> {
         isPCMode={isPCMode}
       >
         <div className='page-container'>
+          <BetterImage width={200} height={150} src="https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png" maxImageWidth={300} />
           <div className='markdown-body'>
+            <hr />
             <h2>Webp 基础判断</h2>
+            <h3>是否支持 Webp</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>通过 Canvas </th>
+                  <th>通过加载 Webp 图片</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
+                <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
+              </tr>
+            </table>
             <h3>设备信息</h3>
             <table>
               <thead>
@@ -97,21 +112,9 @@ class App extends React.Component<Props, State> {
               <h2>当前设备 UserAgent（点击可复制）</h2>
               <div style={{ wordBreak: 'break-all' }}>{uaStr}</div>
             </div>
-            <h3>是否支持 Webp</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>通过 Canvas </th>
-                  <th>通过加载 Webp 图片</th>
-                </tr>
-              </thead>
-              <tr>
-                <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
-                <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
-              </tr>
-            </table>
+           
           </div>
-          <BetterImage width={200} height={150} src="https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png" maxImageWidth={300} />
+          
         </div>
         <ToastContainer position="bottom-center" />
       </Page>
