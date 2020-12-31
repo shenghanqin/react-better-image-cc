@@ -1,0 +1,147 @@
+@import '../../constants.scss';
+.footer {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.footer-main {
+  max-width: $xxl-max-body-width-center;
+  padding: 30px 16px;
+  margin: 0 auto;
+}
+
+.footer-main .footer-logo {
+  display: block;
+  width: 130px;
+  height: 60px;
+  background: url(https://image-hosting.xiaoxili.com/img/20200712201537.png) no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+
+
+.footer-main .footer-links dl {
+  padding-left: 30px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-main .footer-links dt {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.33;
+  color: #000;
+  text-indent: -32px;
+  margin-bottom: 10px;
+}
+
+.footer-main .footer-links dt > img {
+  display: inline-block;
+  width: auto;
+  height: 20px;
+  vertical-align: middle;
+  margin: -3px 10px 0 0;
+}
+
+.footer-main .footer-links dd {
+  margin-right: 10px;
+}
+.footer-main .footer-links dd a {
+  font-size: 12px;
+  line-height: 1.33;
+  color: #000;
+}
+
+.footer-main .footer-links dd a:hover {
+  color: #0000C2;
+}
+
+.footer-copyright {
+  padding: 20px 0;
+  background: #0000C2;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.footer-copyright a {
+  color: #fff;
+}
+
+  /* 
+.page-mode-pc {
+  .page-container {
+    max-width: none;
+    width: $xxl-page-min-width-center;
+  }
+}
+
+@media (min-width: $xxl-page-max-width) {
+  .page-mode-pc {
+    .page-container {
+      width: $xxl-page-max-width-center;
+    }
+  }
+}
+ */
+.footer-pc {
+  max-width: none;
+  width: $xxl-page-min-width-center;
+  box-sizing: border-box;
+  padding: 70px 16px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (min-width: $xxl-page-max-width) {
+  .footer-pc {
+    width: $xxl-page-max-width-center;
+  }
+}
+
+
+.footer-pc .footer-logo {
+  width: 195px;
+  height: 90px;
+}
+.footer-pc .footer-links {
+  display: flex;
+}
+
+.footer-pc .footer-links dl {
+  margin-top: 0;
+  padding-left: 40px;
+  display: block;
+  flex-wrap: nowrap;
+}
+.footer-pc .footer-links dl + dl {
+  margin-left: 60px;
+}
+
+.footer-pc .footer-links dt {
+  font-size: 24px;
+  text-indent: -40px;
+}
+
+.footer-pc .footer-links dt > img {
+  height: 30px;
+}
+
+.footer-pc .footer-links dt + dd {
+  margin-top: 40px;
+}
+
+.footer-pc .footer-links dd {
+  margin-top: 20px;
+}
+
+.footer-pc .footer-links dd a {
+  font-size: 18px;
+}
+
+.footer-pc + .footer-copyright > br {
+  display: none;
+}
