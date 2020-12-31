@@ -19,14 +19,14 @@ export default class Footer extends React.Component {
             <dl>
               <dt><img src="https://image-hosting.xiaoxili.com/img/20200712164455.png" alt="关于我们" />关于</dt>
               <dd><a href="/about.html">关于小溪里</a></dd>
-              <dd><a href="/about.html">关于 Hi Our</a></dd>
+              {/* <dd><a href="/about.html">关于 Hi Our</a></dd> */}
             </dl>
-            <dl>
+            {/* <dl>
               <dt><img src="https://image-hosting.xiaoxili.com/img/20200712164456.png" alt="相关资源" />社区</dt>
               <dd><a href="https://cloudbase.net">云开发 CloudBase</a></dd>
               <dd><a href="https://taro.jd.com">Taro</a></dd>
               <dd><a href="https://tuture.co">图雀社区</a></dd>
-            </dl>
+            </dl> */}
             {/* <dl>
               <dt><img src={require("../../img/footer-a@2x.png")} alt="友情链接" />友情链接</dt>
             </dl> */}

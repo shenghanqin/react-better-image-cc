@@ -21,8 +21,8 @@ export default class Page extends React.Component {
           <nav className="main-nav">
             <a href='/'>小溪里</a>
             <a href='/blog' title="小溪里博客">博客</a>
-            <a href='https://github.com/shenghanqin/react-ui-mode-cc' title="react-ui-mode-cc">GitHub</a>
-            <a href='https://www.npmjs.com/package/@xiaoxili/react-ui-mode-cc' title="react-ui-mode-cc">NPM</a>
+            <a href='https://github.com/shenghanqin/react-better-image-cc' title="react-better-image-cc">GitHub</a>
+            <a href='https://www.npmjs.com/package/@xiaoxili/react-better-image-cc' title="react-better-image-cc">NPM</a>
           </nav>
         </div>
       </header>
