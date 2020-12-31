@@ -1,0 +1,70 @@
+@import '../../constants.scss';
+
+
+header {
+  background: #E2EEFF;
+}
+.header-main {
+  max-width: $xxl-max-body-width-center;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-main .logo {
+  display: block;
+  width: 130px;
+  height: 60px;
+}
+
+.header-main .logo a {
+  background: url(https://image-hosting.xiaoxili.com/img/20200712201537.png) no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: 100%
+}
+
+.header-main .main-nav a {
+  font-size: 16px;
+  line-height: 1.33;
+  color: #6B8CC7;
+}
+
+.header-main .main-nav a + a {
+  margin-left: 16px;
+}
+
+.header-main .main-nav a:hover {
+  color: #6B8CC7;
+}
+
+.header-pc {
+  width: $xxl-page-min-width-center;
+  max-width: none;
+  padding: 20px 0;
+}
+
+.header-pc .logo {
+  width: 195px;
+  height: 90px;
+}
+
+.header-pc .main-nav a {
+  font-size: 24px;
+}
+
+.header-pc .main-nav a + a {
+  margin-left: 52px;
+}
+
+@media (min-width: $xxl-page-max-width) {
+  .header-pc {
+    width: $xxl-page-max-width-center;
+  }
+}
