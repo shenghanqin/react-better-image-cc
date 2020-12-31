@@ -7,8 +7,12 @@ import * as clipboard from 'clipboard-polyfill/text'
 import Page from './components/page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BetterImage, { checkCanvasWebP, getWebpSupport } from '@xiaoxili/react-better-image-cc';
 
-import BetterImage, { checkCanvasWebP, getWebpSupport } from '@xiaoxili/react-better-image-cc'
+const detector = require('detector');
+
+const uaStr = window.navigator.userAgent;
+
 interface Props {
   isPCMode ?: boolean
   uiMode ?: string
@@ -22,6 +26,7 @@ interface State {
 class App extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
+    console.log(detector)
     this.state = {
       isSupportWebp: false
     }
@@ -50,6 +55,7 @@ class App extends React.Component<Props, State> {
   render() {
     const { isPCMode } = this.props
     const { isSupportWebp } = this.state
+    const { browser, os, device } = detector
 
     return (
       <Page
@@ -60,6 +66,37 @@ class App extends React.Component<Props, State> {
         <div className='page-container'>
           <div className='markdown-body'>
             <h2>Webp 基础判断</h2>
+            <h3>设备信息</h3>
+            <table>
+              <thead>
+                <tr>
+                  <td>设备名称</td>
+                  <th>系统名称及版本</th>
+                  <th>浏览器名称及版本</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>{device.name}</td>
+                <td>{os.name} {os.version}</td>
+                <td>{browser.name} {browser.fullVersion}</td>
+              </tr>
+            </table>
+            <table>
+              <thead>
+                <tr>
+                  <th>设备宽高</th>
+                  <th>页面宽高</th>
+                </tr>
+              </thead>
+              <tr>
+                <td>screen.width： {window.screen.width} screen.height：{window.screen.height}</td>
+                <td>innerWidth：{window.innerWidth} innerHeight：{window.innerHeight}</td>
+              </tr>
+            </table>
+            <div onClick={this.copyToClipboard.bind(this, uaStr)}>
+              <h2>当前设备 UserAgent（点击可复制）</h2>
+              <div style={{ wordBreak: 'break-all' }}>{uaStr}</div>
+            </div>
             <h3>是否支持 Webp</h3>
             <table>
               <thead>

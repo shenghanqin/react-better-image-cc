@@ -94,6 +94,7 @@ code {
   max-width: $xxl-max-body-width-center;
   margin: 0 auto;
   padding: 10px;
+  box-sizing: border-box;
   flex: 1;
 }
 

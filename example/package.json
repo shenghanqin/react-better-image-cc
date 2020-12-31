@@ -25,6 +25,7 @@
     "babel-eslint": "^10.0.3",
     "clipboard-polyfill": "^3.0.1",
     "cross-env": "^7.0.2",
+    "detector": "^2.5.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",
