@@ -5,3 +5,13 @@
     width: 100%;
   }
 }
+
+.slider-banner {
+  position: relative;
+  margin: 20px auto 55px;
+  width: $xxl-page-min-width;
+
+  @media screen and (min-width: $xxl-page-max-width) {
+    width: $xxl-page-max-width-center;
+  }
+}

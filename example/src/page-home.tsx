@@ -8,6 +8,7 @@ import Page from './components/page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BetterImage, { checkCanvasWebP, getWebpSupport } from '@xiaoxili/react-better-image-cc';
+import Slider3D from "./components/slider-3d";
 
 const detector = require('detector');
 
@@ -52,10 +53,30 @@ class App extends React.Component<Props, State> {
     });    
   }
 
+  onSliderItemChange = () => {
+    
+  }
+
+  onSliderItemClick = () => {
+
+  }
+
   render() {
     const { isPCMode } = this.props
     const { isSupportWebp } = this.state
     const { browser, os, device } = detector
+
+    const carousel = [
+      {
+        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
+      },
+      {
+        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
+      },
+      {
+        picUrl: 'https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png'
+      },
+    ]
 
     return (
       <Page
@@ -64,6 +85,9 @@ class App extends React.Component<Props, State> {
         isPCMode={isPCMode}
       >
         <div className='page-container'>
+          <div className='slider-banner'>
+            <Slider3D source={carousel} isCascade={false} onHandleClick={this.onSliderItemClick} onItemChange={this.onSliderItemChange} />
+          </div>
           <BetterImage width={200} height={150} src="https://image-hosting.xiaoxili.com/img/img/20201018/7b73f4d58c9ad761e01eafed77a2d28f-750765.png" maxImageWidth={300} />
           <div className='markdown-body'>
             <hr />

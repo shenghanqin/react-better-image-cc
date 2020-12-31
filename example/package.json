@@ -23,6 +23,7 @@
     "@xiaoxili/react-better-image-cc": "link:..",
     "@xiaoxili/react-ui-mode-cc": "^0.2.0",
     "babel-eslint": "^10.0.3",
+    "classnames": "^2.2.6",
     "clipboard-polyfill": "^3.0.1",
     "cross-env": "^7.0.2",
     "detector": "^2.5.0",

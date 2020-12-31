@@ -7,7 +7,7 @@
         "inputs": {
           "buildCommand": "npm run build",
           "outputPath": "build",
-          "cloudPath": "/packages/react-ui-mode-cc"
+          "cloudPath": "/packages/react-better-image-cc"
         }
       }
     }

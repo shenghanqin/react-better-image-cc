@@ -1,0 +1,262 @@
+
+
+.image-item-better {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%!important;
+    object-fit: cover
+}
+
+.switch-list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -35px;
+    text-align: center
+}
+
+.switch-item {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    padding: 3px;
+    margin: 0 0 0 4px;
+    vertical-align: top;
+    cursor: pointer
+}
+
+.switch-item:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #ecedf2;
+    border-radius: 5px
+}
+
+.switch-item:first-child {
+    margin-left: 0
+}
+
+.switch-item-active {
+    width: 22px
+}
+
+.switch-item-active:before {
+    background: #2f5aff
+}
+
+.slider-card .image-list {
+    position: relative;
+    padding-top: 19.27835051546392%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.slider-card .image-item {
+    position: absolute;
+    top: 13.368983957219251%;
+    width: 26.78%;
+    padding-top: 14.123711340206185%;
+    z-index: 0;
+    opacity: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #fff;
+    background-size: cover;
+    background-position: 50%;
+    will-change: transform,top;
+    box-shadow: 0 6px 20px rgba(211,162,164,.2)
+}
+
+.slider-card .image-item,.slider-card .left-image-item {
+    left: -8%;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    -webkit-transform: perspective(3000px) rotateY(45deg) translateZ(-70px);
+    transform: perspective(3000px) rotateY(45deg) translateZ(-70px)
+}
+
+.slider-card .left-image-item {
+    z-index: 1;
+    pointer-events: none
+}
+
+.slider-card .prev-image-item {
+    left: 0;
+    z-index: 2;
+    opacity: 1;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    -webkit-transform: perspective(30000px) rotateY(30deg);
+    transform: perspective(30000px) rotateY(30deg)
+}
+
+.slider-card .main-image-item {
+    width: 51.546391752577314%;
+    padding-top: 19.27835051546392%;
+    z-index: 3;
+    left: 24.22%;
+    top: 0;
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 6px 20px rgba(98,95,96,.2)
+}
+
+.slider-card .next-image-item {
+    left: 73.15%;
+    z-index: 2;
+    opacity: 1;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+    -webkit-transform: perspective(30000px) rotate3d(0,-1,0,30deg);
+    transform: perspective(30000px) rotate3d(0,-1,0,30deg)
+}
+
+.slider-card .right-image-item {
+    left: 84.8%;
+    z-index: 2;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+    -webkit-transform: perspective(3000px) rotate3d(0,-1,0,45deg) translateZ(-70px);
+    transform: perspective(3000px) rotate3d(0,-1,0,45deg) translateZ(-70px);
+    pointer-events: none
+}
+
+.slider-card .no-third .next-image-item {
+    left: 34.5%;
+    -webkit-transform: translateZ(-70px);
+    transform: translateZ(-70px);
+    opacity: 0
+}
+
+.slider-card .no-third .right-image-item {
+    left: 34.5%;
+    -webkit-transform: translateZ(-100px);
+    transform: translateZ(-100px)
+}
+
+.slider-cascade .image-list {
+    position: relative;
+    padding-top: 26.46551724137931%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d
+}
+
+.slider-cascade .image-item {
+    position: absolute;
+    left: -8%;
+    top: 9.120521172638437%;
+    width: 41%;
+    padding-top: 21.551724137931032%;
+    z-index: 0;
+    opacity: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    background-color: #fff;
+    background-size: cover;
+    background-position: 50%;
+    -webkit-transform: perspective(3000px) rotateY(45deg) translateZ(-70px);
+    transform: perspective(3000px) rotateY(45deg) translateZ(-70px);
+    will-change: transform,top;
+    box-shadow: 0 6px 20px rgba(211,162,164,.2)
+}
+
+.slider-cascade .image-item:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.35);
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    pointer-events: none
+}
+
+.slider-cascade .left-image-item {
+    left: -8%;
+    z-index: 1;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    -webkit-transform: perspective(3000px) rotateY(45deg) translateZ(-70px);
+    transform: perspective(3000px) rotateY(45deg) translateZ(-70px);
+    pointer-events: none
+}
+
+.slider-cascade .prev-image-item {
+    left: 0;
+    z-index: 2;
+    opacity: 1;
+    -webkit-transform-origin: left;
+    -ms-transform-origin: left;
+    transform-origin: left;
+    -webkit-transform: perspective(30000px) rotateY(30deg);
+    transform: perspective(30000px) rotateY(30deg)
+}
+
+.slider-cascade .main-image-item {
+    width: 69.48275862068965%;
+    padding-top: 26.46551724137931%;
+    z-index: 3;
+    left: 14.65%;
+    top: 0;
+    opacity: 1;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 6px 20px rgba(98,95,96,.2)
+}
+
+.slider-cascade .main-image-item:after {
+    opacity: 0
+}
+
+.slider-cascade .next-image-item {
+    left: 59%;
+    z-index: 2;
+    opacity: 1;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+    -webkit-transform: perspective(30000px) rotate3d(0,-1,0,30deg);
+    transform: perspective(30000px) rotate3d(0,-1,0,30deg)
+}
+
+.slider-cascade .right-image-item {
+    left: 84.8%;
+    z-index: 2;
+    -webkit-transform-origin: right;
+    -ms-transform-origin: right;
+    transform-origin: right;
+    -webkit-transform: perspective(3000px) rotate3d(0,-1,0,45deg) translateZ(-70px);
+    transform: perspective(3000px) rotate3d(0,-1,0,45deg) translateZ(-70px);
+    pointer-events: none
+}
+
+.slider-cascade .no-third .next-image-item {
+    left: 34.5%;
+    -webkit-transform: translateZ(-70px);
+    transform: translateZ(-70px);
+    opacity: 0
+}
+
+.slider-cascade .no-third .right-image-item {
+    left: 34.5%;
+    -webkit-transform: translateZ(-100px);
+    transform: translateZ(-100px)
+}
