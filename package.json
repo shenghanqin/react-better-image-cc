@@ -1,6 +1,6 @@
 {
   "name": "@xiaoxili/react-better-image-cc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Webp图片压缩、图片懒加载组件",
   "author": "https://github.com/shenghanqin/",
   "license": "MIT",
@@ -57,6 +57,7 @@
     "react-scripts": "^3.4.1",
     "typescript": "^3.7.5"
   },
+  "homepage": "https://www.xiaoxili.com/packages/react-better-image-cc/",
   "files": [
     "dist"
   ]
