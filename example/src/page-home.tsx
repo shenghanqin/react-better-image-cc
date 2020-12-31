@@ -42,6 +42,8 @@ const imageList = [
   }
 ]
 
+const getRandom = () => Math.ceil(100 * Math.random())
+
 interface Props {
   isPCMode ?: boolean
   uiMode ?: string
@@ -172,7 +174,7 @@ class App extends React.Component<Props, State> {
                 return (
                   <div key={index} className='item'>
                     <div key={index} className='image-now'>
-                      <BetterImage ratio={9 / 16} src={item.picUrl} maxImageWidth={isPCMode ? 1200 : 600} />
+                      <BetterImage ratio={9 / 16} src={item.picUrl} maxImageWidth={(isPCMode ? 1200 : 600) + getRandom()} />
                     </div>
                     <div key={index} className='item-main'>
                       <h3>标题</h3>
@@ -192,7 +194,7 @@ class App extends React.Component<Props, State> {
                 return (
                   <div key={index} className='item'>
                     <div key={index} className='image-now'>
-                      <BetterImage width={200} height={112} src={item.picUrl} maxImageWidth={isPCMode ? 800 : 400} />
+                      <BetterImage width={200} height={112} src={item.picUrl} maxImageWidth={(isPCMode ? 800 : 400) + getRandom()} />
                     </div>
                     <div key={index} className='item-main'>
                       <h3>标题</h3>
@@ -203,8 +205,6 @@ class App extends React.Component<Props, State> {
               })
             }
           </div>
-          
-          
         </div>
         <ToastContainer position="bottom-center" />
       </Page>
@@ -215,7 +215,5 @@ class App extends React.Component<Props, State> {
 export default withUiMode({
   // 区分模式的宽度
   widthMode: 1000,
-  // iPad 微信恒定为 Mobile UI
-  // isPadWechatMobile: true
 })(App)
 
