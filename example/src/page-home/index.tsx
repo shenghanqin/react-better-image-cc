@@ -1,15 +1,15 @@
 import React from 'react';
 
-import "./page-home.scss";
+import "./index.scss";
 
 import withUiMode from '@xiaoxili/react-ui-mode-cc'
 import * as clipboard from 'clipboard-polyfill/text'
-import Page from './components/page';
+import Page from '../components/page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BetterImage, { checkCanvasWebP, getWebpByWidth, getWebpSupport } from '@xiaoxili/react-better-image-cc';
-import Slider3D from "./components/slider-3d";
-import SliderMobile from "./components/slider-mobile";
+import Slider3D from "../components/slider-3d";
+import SliderMobile from "../components/slider-mobile";
 
 const detector = require('detector');
 
@@ -87,14 +87,6 @@ class App extends React.Component<Props, State> {
     }
   }
 
-  onSliderItemChange = () => {
-    
-  }
-
-  onSliderItemClick = () => {
-
-  }
-
   render() {
     const { isPCMode } = this.props
     const { isSupportWebp } = this.state
@@ -111,6 +103,7 @@ class App extends React.Component<Props, State> {
       >
         <div className='page-container'>
           <div className='markdown-body'>
+            <h1 style={{ textAlign: 'center' }}>Demo——Webp 图片压缩、图片懒加载组件</h1>
             <h2>Webp 基础判断</h2>
             <h3>是否支持 Webp</h3>
             <table>
