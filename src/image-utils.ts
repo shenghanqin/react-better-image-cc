@@ -5,37 +5,35 @@
 /**
  * 判断浏览器是否兼容 Webp 格式图片
  */
-let hasWebP = false
+let isSupportWebp = false
 const uaStr = window.navigator.userAgent.toLowerCase()
 function checkWebp() {
-  if (uaStr.includes('iphone') || uaStr.includes('ipad') || (uaStr.includes('macintosh') && uaStr.includes('version/'))) {
+  // 在 iPhone、iPad、Mac Safari 上使用加载 Webp 方式
+  if (uaStr.includes(`iphone`) || uaStr.includes(`ipad`) || (uaStr.includes(`macintosh`) && uaStr.includes(`version/`))) {
     checkLoadWebp()
     return
   }
-  hasWebP = checkCanvasWebP()
+  isSupportWebp = checkCanvasWebP()
 }
+checkWebp()
+
 export function checkLoadWebp() {
   var img = new Image()
   img.onload = function () {
-    console.log('loaded2')
-    hasWebP = !!(img.height > 0 && img.width > 0)
+    isSupportWebp = !!(img.height > 0 && img.width > 0)
   }
   img.onerror = function () {
-    console.log('loaded error')
-    hasWebP = false
+    isSupportWebp = false
   }
-  img.src =
-    'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA='
+  img.src = `data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=`
 }
 
+export const getWebpSupport = () => isSupportWebp
 
-
-checkWebp()
-
-export const getWebpSupport = () => hasWebP
-
-// 这个方法，不兼容Safari浏览器，所以改用了加载webp图片的方式
-// Safari 14支持webp格式，但dataUrl中还是 image/png
+/**
+ * 支持 Chrome、Firefox 浏览器
+ * Safari 14支持 webp 格式，但 dataUrl 中还是 image/png
+ */
 export function checkCanvasWebP(): boolean {
   const ele = document.createElement('canvas')
   if (ele && typeof ele.toDataURL === 'function') {
@@ -57,8 +55,9 @@ export function getOriginImgUrl(url = ''): string {
 }
 
 /**
- * 传入原始图片url，根据指定宽度获取图片地址，宽度大于`width`的时候会缩放至该宽度（等比）
- * 宽度小于改宽度的时候图片不缩放
+ * 默认返回原格式
+ * 传入原始图片url，根据指定宽度获取图片地址，宽度大于`width`的时候会等比缩放至该宽度
+ * 原始宽度小于目标宽度，图片不缩放
  *
  * @param {string} url 传入的图片地址
  * @param {number} width 指定的图片最大宽度
@@ -76,8 +75,8 @@ export function getImgByWidth(
 
 /**
  * 默认返回 webp 格式
- * 传入原始图片url，根据指定宽度获取图片地址，宽度大于`width`的时候会缩放至该宽度（等比）
- * 宽度小于改宽度的时候图片不缩放
+ * 传入原始图片url，根据指定宽度获取图片地址，宽度大于`width`的时候会等比缩放至该宽度
+ * 原始宽度小于目标宽度，图片不缩放
  *
  * @param {string} url 传入的图片地址
  * @param {number} width 指定的图片最大宽度
@@ -92,6 +91,6 @@ export function getWebpByWidth(
   const originUrl = getOriginImgUrl(url)
 
   return `${originUrl}${prefix}${Math.ceil(maxWidth)}${
-    hasWebP ? '/format/webp/ignore-error/1' : ''
+    isSupportWebp ? '/format/webp/ignore-error/1' : ''
   }`
 }

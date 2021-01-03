@@ -2107,9 +2107,8 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
-"@xiaoxili/react-better-image-cc@link:..":
-  version "0.0.0"
-  uid ""
+"@xiaoxili/react-better-image-cc@file:..":
+  version "0.1.1"
 
 "@xiaoxili/react-ui-mode-cc@^0.2.0":
   version "0.2.0"

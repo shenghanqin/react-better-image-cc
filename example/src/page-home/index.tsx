@@ -104,12 +104,16 @@ class App extends React.Component<Props, State> {
         <div className='page-container'>
           <div className='markdown-body'>
             <h1 style={{ textAlign: 'center' }}>Demo——Webp 图片压缩、图片懒加载组件</h1>
+            <blockquote>
+              <p>文章颜色主题由巧克力很苦同学制作，原文在《<a href="https://juejin.cn/post/6909356292574281735" target="_blank" rel="noreferrer">Mdnice自定义文章主题</a>》。</p>
+            </blockquote>
+            <br />
             <h2>Webp 基础判断</h2>
             <h3>是否支持 Webp</h3>
             <table>
               <thead>
                 <tr>
-                  <th>通过 Canvas </th>
+                  <th>通过 Canvas toDataURL </th>
                   <th>通过加载 Webp 图片</th>
                 </tr>
               </thead>
@@ -192,7 +196,7 @@ class App extends React.Component<Props, State> {
             }
           </div>
           <div className='markdown-body'>
-            <h3>图片列表，一行多列</h3>
+            <h3>图片列表，左图右文</h3>
           </div>
           <div className='image-list-2'>
             {
