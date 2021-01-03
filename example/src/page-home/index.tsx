@@ -167,11 +167,17 @@ class App extends React.Component<Props, State> {
           <div className={isPCMode ? 'slider-banner' : 'slider-banner-mobile' }>
             <Slider3D
               source={carousel}
-              isCascade={!isPCMode}
+              isCascade={true}
+            />
+          </div>
+
+          <div className={isPCMode ? 'slider-banner' : 'slider-banner-mobile' }>
+            <Slider3D
+              source={carousel}
             />
           </div>
           <div className='markdown-body'>
-            <p>PS：电脑端为 3D 轮播；手机上为平铺轮播。</p>
+            <p>PS：轮播 1 为叠层轮播，轮播 2 为不叠层轮播。均支持 PC 和 Mobile 等比缩放。</p>
             <hr />
             <h3>图片列表，一行多列</h3>
           </div>

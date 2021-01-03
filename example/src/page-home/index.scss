@@ -1,6 +1,11 @@
 @import '../constants.scss';
 @import './markdown.scss';
 
+.page-home {
+  #root {
+    overflow: hidden;
+  }
+}
 .page-container {
   width: 100%;
   max-width: $xxl-max-body-width-center;
@@ -35,16 +40,10 @@
 .slider-banner {
   position: relative;
   margin: 20px auto 55px;
-  width: $xxl-page-min-width;
-
-  @media screen and (min-width: $xxl-page-max-width) {
-    width: $xxl-page-max-width-center;
-  }
 }
 .slider-banner-mobile {
   position: relative;
-  margin: 20px auto;
-  overflow: hidden;
+  margin: 20px auto 40px;
 
   .switch-list {
     bottom: 0;
