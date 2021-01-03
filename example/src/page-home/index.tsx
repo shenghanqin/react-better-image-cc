@@ -9,7 +9,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BetterImage, { checkCanvasWebP, getWebpByWidth, getWebpSupport } from '@xiaoxili/react-better-image-cc';
 import Slider3D from "../components/slider-3d";
-import SliderMobile from "../components/slider-mobile";
 
 const detector = require('detector');
 
@@ -163,17 +162,15 @@ class App extends React.Component<Props, State> {
             <h2>图片懒加载组件</h2>
             <h3>轮播图示意图</h3>
             <p>使用 <code>getWebpByWidth('图片地址', 1000)</code> 获取 Webp 图片。</p>
-            {
-              isPCMode
-              ? (
-                <div className='slider-banner'>
-                    <Slider3D
-                      source={carousel}
-                      />
-                  </div>
-                )
-                : <SliderMobile source={carousel} />
-              }
+          </div>
+          
+          <div className={isPCMode ? 'slider-banner' : 'slider-banner-mobile' }>
+            <Slider3D
+              source={carousel}
+              isCascade={!isPCMode}
+            />
+          </div>
+          <div className='markdown-body'>
             <p>PS：电脑端为 3D 轮播；手机上为平铺轮播。</p>
             <hr />
             <h3>图片列表，一行多列</h3>

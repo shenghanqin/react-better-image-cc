@@ -41,6 +41,28 @@
     width: $xxl-page-max-width-center;
   }
 }
+.slider-banner-mobile {
+  position: relative;
+  margin: 20px auto 55px;
+
+  .switch-list {
+    bottom: 0;
+  }
+  .switch-item {
+    vertical-align: middle;
+    width: 5px;
+    height: 5px;
+    &:before {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .switch-item-active {
+    width: 15px;
+    &:before {
+      background: rgba(255, 255, 255, 1);
+    }
+  }
+}
 
 .image-list-1 {
   display: flex;
