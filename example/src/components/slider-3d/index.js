@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './styles.scss'
+import { Swipeable } from 'react-swipeable'
 
 var cx = require('classnames')
 
@@ -192,6 +193,23 @@ export default class Slider3D extends React.PureComponent {
     }
   }
 
+  // 向左滑动
+  onSwipedLeft = (event) => {
+    console.log('onSwipedLeft event', event)
+    const { source } = this.props
+    const { indexActive } = this.state
+
+    this.switchItem(indexActive >= source.length - 1 ? 0 : indexActive + 1)
+  }
+
+  // 向右滑动
+  onSwipedRight = (event) => {
+    const { source } = this.props
+    const { indexActive } = this.state
+
+    this.switchItem(indexActive <= 0 ? source.length -1 : indexActive - 1 )
+  }
+
   render() {
     const { isCascade, source, settings, duration, showThird, style } = this.props
     const { indexActive } = this.state
@@ -200,46 +218,38 @@ export default class Slider3D extends React.PureComponent {
 
     return (
       <div className={cx('carousel', { 'slider-cascade': isCascade, 'slider-card': !isCascade })} style={ style }>
-        {source && source.length > 0
-          ? (
-            <div className={cx('image-list', !showThird ? 'no-third' : '')} {...settings}>
-              {
-                source.map((item, index) => {
-                  return (
-                    <a key={`c-c-${item}-${index}`} href={item.linkUrl} onClick={(e) => this.itemClick(e, index)} target="_blank" rel="noopener noreferrer" style={ { transition: index === indexActive ? `all ${duration / 1000 / 1.25}s` :  `all ${duration / 1000}s` } } className={cx('image-item', {
-                      'main-image-item': index === indexActive,
-                      // 前一个
-                      'prev-image-item': (indexActive === 0 && index === size - 1) || (indexActive > 0 && index === indexActive - 1),
-                      // 后一个
-                      'next-image-item': (indexActive === size - 1 && index === 0) || (indexActive < size - 1 && index === indexActive + 1),
-                      // 最左侧
-                      'left-image-item': source.length > 4 && ((indexActive === 0 && index === size - 2) || (indexActive === 1 && index === size - 1) || (indexActive > 1 && index === indexActive - 2)),
-                      'right-image-item': source.length > 4 && ((indexActive === size - 1 && index === 1) || (indexActive === size - 2 && index === 0) || (indexActive < size - 2 && index === indexActive + 2))
-                    })}>
-                      <img className={cx('image-item-better')} src={item.picUrl} alt={''}/>
-                    </a>
-                  )
-                })
-              }
-            </div>
-          )
-          : null
-        }
-        {source && source.length > 0
-          ? (
-            <div className={cx('switch-list')}>
-              {
-                source.map((item, index) => {
-                  return (
-                    <div key={`c-${item}-${index}`} className={cx('switch-item', { 'switch-item-active': index === indexActive })} style={{ transition: `all ${duration / 1000}s` }} onClick={this.switchItem.bind(this, index, 'click')}>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          )
-          : null
-        }
+        <Swipeable onSwipedLeft={this.onSwipedLeft} onSwipedRight={this.onSwipedRight}>
+          <div className={cx('image-list', !showThird ? 'no-third' : '')} {...settings}>
+            {
+              source.map((item, index) => {
+                return (
+                  <a key={`c-c-${item}-${index}`} href={item.linkUrl} onClick={(e) => this.itemClick(e, index)} target="_blank" rel="noopener noreferrer" style={{ transition: index === indexActive ? `all ${duration / 1000 / 1.25}s` : `all ${duration / 1000}s` }} className={cx('image-item', {
+                    'main-image-item': index === indexActive,
+                    // 前一个
+                    'prev-image-item': (indexActive === 0 && index === size - 1) || (indexActive > 0 && index === indexActive - 1),
+                    // 后一个
+                    'next-image-item': (indexActive === size - 1 && index === 0) || (indexActive < size - 1 && index === indexActive + 1),
+                    // 最左侧
+                    'left-image-item': source.length > 4 && ((indexActive === 0 && index === size - 2) || (indexActive === 1 && index === size - 1) || (indexActive > 1 && index === indexActive - 2)),
+                    'right-image-item': source.length > 4 && ((indexActive === size - 1 && index === 1) || (indexActive === size - 2 && index === 0) || (indexActive < size - 2 && index === indexActive + 2))
+                  })}>
+                    <img className={cx('image-item-better')} src={item.picUrl} alt={''} />
+                  </a>
+                )
+              })
+            }
+          </div>
+        </Swipeable>
+        <div className={cx('switch-list')}>
+          {
+            source.map((item, index) => {
+              return (
+                <div key={`c-${item}-${index}`} className={cx('switch-item', { 'switch-item-active': index === indexActive })} style={{ transition: `all ${duration / 1000}s` }} onClick={this.switchItem.bind(this, index, 'click')}>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     )
   }

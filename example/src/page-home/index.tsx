@@ -104,7 +104,7 @@ class App extends React.Component<Props, State> {
           <div className='markdown-body'>
             <h1 style={{ textAlign: 'center' }}>Demo——Webp 图片压缩、图片懒加载组件</h1>
             <blockquote>
-              <p>文章颜色主题由巧克力很苦同学制作，原文在《<a href="https://juejin.cn/post/6909356292574281735" target="_blank" rel="noreferrer">Mdnice自定义文章主题</a>》。</p>
+              <p>文章颜色主题由巧克力很苦同学制作，原文在《<a href="https://juejin.cn/post/6909356292574281735" target="_blank" rel="noopener noreferrer">Mdnice自定义文章主题</a>》。</p>
             </blockquote>
             <br />
             <h2>Webp 基础判断</h2>

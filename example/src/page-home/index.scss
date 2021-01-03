@@ -43,7 +43,8 @@
 }
 .slider-banner-mobile {
   position: relative;
-  margin: 20px auto 55px;
+  margin: 20px auto;
+  overflow: hidden;
 
   .switch-list {
     bottom: 0;
