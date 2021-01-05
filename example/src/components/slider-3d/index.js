@@ -218,7 +218,7 @@ export default class Slider3D extends React.PureComponent {
 
     return (
       <div className={cx('carousel', { 'slider-cascade': isCascade, 'slider-card': !isCascade })} style={ style }>
-        <Swipeable onSwipedLeft={this.onSwipedLeft} onSwipedRight={this.onSwipedRight}>
+        <Swipeable onSwipedLeft={this.onSwipedLeft} onSwipedRight={this.onSwipedRight} preventDefaultTouchmoveEvent={true}>
           <div className={cx('image-list', !showThird ? 'no-third' : '')} {...settings}>
             {
               source.map((item, index) => {
