@@ -1,5 +1,4 @@
 @import './constants.scss';
-@import './markdown.scss';
 
 sub, sup {
   line-height: 0;
@@ -89,31 +88,4 @@ code {
   flex-direction: column;
 }
 
-.page-container {
-  width: 100%;
-  max-width: $xxl-max-body-width-center;
-  margin: 0 auto;
-  padding: 10px;
-  box-sizing: border-box;
-  flex: 1;
-}
 
-// .page-container h2 {
-//   font-size: 1em;
-//   margin: 20px 0 10px;
-// }
-
-.page-mode-pc {
-  .page-container {
-    max-width: none;
-    width: $xxl-page-min-width-center;
-  }
-}
-
-@media (min-width: $xxl-page-max-width) {
-  .page-mode-pc {
-    .page-container {
-      width: $xxl-page-max-width-center;
-    }
-  }
-}

@@ -1,15 +1,14 @@
 import React from 'react';
 
-import "./page-home.scss";
+import "./index.scss";
 
 import withUiMode from '@xiaoxili/react-ui-mode-cc'
 import * as clipboard from 'clipboard-polyfill/text'
-import Page from './components/page';
+import Page from '../components/page';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BetterImage, { checkCanvasWebP, getWebpByWidth, getWebpSupport } from '@xiaoxili/react-better-image-cc';
-import Slider3D from "./components/slider-3d";
-import SliderMobile from "./components/slider-mobile";
+import Slider3D from "../components/slider-3d";
 
 const detector = require('detector');
 
@@ -73,19 +72,18 @@ class App extends React.Component<Props, State> {
     )
   }
   componentDidMount() {
-    setTimeout(() => {
+    console.log('getWebpSupport()', getWebpSupport())
+    if (getWebpSupport()) {
       this.setState({
-        isSupportWebp: getWebpSupport()
-      })
-    });    
-  }
-
-  onSliderItemChange = () => {
-    
-  }
-
-  onSliderItemClick = () => {
-
+        isSupportWebp: true
+      });
+    } else {
+      setTimeout(() => {
+        this.setState({
+          isSupportWebp: getWebpSupport()
+        })
+      }, 1500);
+    }
   }
 
   render() {
@@ -104,19 +102,26 @@ class App extends React.Component<Props, State> {
       >
         <div className='page-container'>
           <div className='markdown-body'>
+            <h1 style={{ textAlign: 'center' }}>Demo——Webp 图片压缩、图片懒加载组件</h1>
+            <blockquote>
+              <p>文章颜色主题由巧克力很苦同学制作，原文在《<a href="https://juejin.cn/post/6909356292574281735" target="_blank" rel="noopener noreferrer">Mdnice自定义文章主题</a>》。</p>
+            </blockquote>
+            <br />
             <h2>Webp 基础判断</h2>
             <h3>是否支持 Webp</h3>
             <table>
               <thead>
                 <tr>
-                  <th>通过 Canvas </th>
+                  <th>通过 Canvas toDataURL </th>
                   <th>通过加载 Webp 图片</th>
                 </tr>
               </thead>
-              <tr>
-                <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
-                <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>支持 Webp: {checkCanvasWebP() ? '是' : '否'}</td>
+                  <td>支持 Webp: {isSupportWebp ? '是' : '否'}</td>
+                </tr>
+              </tbody>
             </table>
             <h3>设备信息</h3>
             <table>
@@ -127,11 +132,13 @@ class App extends React.Component<Props, State> {
                   <th>浏览器名称及版本</th>
                 </tr>
               </thead>
-              <tr>
-                <td>{device.name}</td>
-                <td>{os.name} {os.version}</td>
-                <td>{browser.name} {browser.fullVersion}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>{device.name}</td>
+                  <td>{os.name} {os.version}</td>
+                  <td>{browser.name} {browser.fullVersion}</td>
+                </tr>
+              </tbody>
             </table>
             <table>
               <thead>
@@ -140,10 +147,12 @@ class App extends React.Component<Props, State> {
                   <th>页面宽高</th>
                 </tr>
               </thead>
-              <tr>
-                <td>screen.width： {window.screen.width} screen.height：{window.screen.height}</td>
-                <td>innerWidth：{window.innerWidth} innerHeight：{window.innerHeight}</td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td>screen.width： {window.screen.width} screen.height：{window.screen.height}</td>
+                  <td>innerWidth：{window.innerWidth} innerHeight：{window.innerHeight}</td>
+                </tr>
+              </tbody>
             </table>
             <div onClick={this.copyToClipboard.bind(this, uaStr)}>
               <h2>当前设备 UserAgent（点击可复制）</h2>
@@ -153,18 +162,22 @@ class App extends React.Component<Props, State> {
             <h2>图片懒加载组件</h2>
             <h3>轮播图示意图</h3>
             <p>使用 <code>getWebpByWidth('图片地址', 1000)</code> 获取 Webp 图片。</p>
-            {
-              isPCMode
-              ? (
-                <div className='slider-banner'>
-                    <Slider3D
-                      source={carousel}
-                      />
-                  </div>
-                )
-                : <SliderMobile source={carousel} />
-              }
-            <p>PS：电脑端为 3D 轮播；手机上为平铺轮播。</p>
+          </div>
+          
+          <div className={isPCMode ? 'slider-banner' : 'slider-banner-mobile' }>
+            <Slider3D
+              source={carousel}
+              isCascade={true}
+            />
+          </div>
+
+          <div className={isPCMode ? 'slider-banner' : 'slider-banner-mobile' }>
+            <Slider3D
+              source={carousel}
+            />
+          </div>
+          <div className='markdown-body'>
+            <p>PS：轮播 1 为叠层轮播，轮播 2 为不叠层轮播。均支持 PC 和 Mobile 等比缩放。</p>
             <hr />
             <h3>图片列表，一行多列</h3>
           </div>
@@ -173,10 +186,10 @@ class App extends React.Component<Props, State> {
               imageList.map((item, index) => {
                 return (
                   <div key={index} className='item'>
-                    <div key={index} className='image-now'>
+                    <div className='image-now'>
                       <BetterImage ratio={9 / 16} src={item.picUrl} maxImageWidth={(isPCMode ? 1200 : 600) + getRandom()} />
                     </div>
-                    <div key={index} className='item-main'>
+                    <div className='item-main'>
                       <h3>标题</h3>
                       <p>图片描述：小溪里棒棒哒！</p>
                     </div>
@@ -186,17 +199,17 @@ class App extends React.Component<Props, State> {
             }
           </div>
           <div className='markdown-body'>
-            <h3>图片列表，一行多列</h3>
+            <h3>图片列表，左图右文</h3>
           </div>
           <div className='image-list-2'>
             {
               imageList.map((item, index) => {
                 return (
                   <div key={index} className='item'>
-                    <div key={index} className='image-now'>
+                    <div className='image-now'>
                       <BetterImage width={200} height={112} src={item.picUrl} maxImageWidth={(isPCMode ? 800 : 400) + getRandom()} />
                     </div>
-                    <div key={index} className='item-main'>
+                    <div className='item-main'>
                       <h3>标题</h3>
                       <p>图片描述：小溪里棒棒哒！</p>
                     </div>

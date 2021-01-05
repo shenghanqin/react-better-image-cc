@@ -8,7 +8,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "tcb framework:deploy --verbose"
+    "deploy": "cloudbase framework:deploy --verbose"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -18,10 +18,9 @@
     "@types/node": "^12.12.38",
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.7",
-    "@types/react-slick": "^0.23.4",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "@xiaoxili/react-better-image-cc": "link:..",
+    "@xiaoxili/react-better-image-cc": "file:..",
     "@xiaoxili/react-ui-mode-cc": "^0.2.0",
     "babel-eslint": "^10.0.3",
     "classnames": "^2.2.6",
@@ -47,9 +46,8 @@
     "react-document-meta": "^3.0.0-beta.2",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "react-slick": "^0.27.13",
+    "react-swipeable": "^5.5.1",
     "react-toastify": "^6.0.8",
-    "slick-carousel": "^1.8.1",
     "typescript": "^3.7.5"
   },
   "devDependencies": {

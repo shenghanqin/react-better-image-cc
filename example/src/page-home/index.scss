@@ -1,6 +1,37 @@
-@import './constants.scss';
+@import '../constants.scss';
+@import './markdown.scss';
+
+.page-home {
+  #root {
+    overflow: hidden;
+  }
+}
+.page-container {
+  width: 100%;
+  max-width: $xxl-max-body-width-center;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.page-mode-pc {
+  .page-container {
+    max-width: none;
+    width: $xxl-page-min-width-center;
+  }
+}
+
+@media (min-width: $xxl-page-max-width) {
+  .page-mode-pc {
+    .page-container {
+      width: $xxl-page-max-width-center;
+    }
+  }
+}
 
 .markdown-body {
+  padding: 20px 0;
   table {
     width: 100%;
   }
@@ -9,10 +40,27 @@
 .slider-banner {
   position: relative;
   margin: 20px auto 55px;
-  width: $xxl-page-min-width;
+}
+.slider-banner-mobile {
+  position: relative;
+  margin: 20px auto 40px;
 
-  @media screen and (min-width: $xxl-page-max-width) {
-    width: $xxl-page-max-width-center;
+  .switch-list {
+    bottom: 0;
+  }
+  .switch-item {
+    vertical-align: middle;
+    width: 5px;
+    height: 5px;
+    &:before {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .switch-item-active {
+    width: 15px;
+    &:before {
+      background: rgba(255, 255, 255, 1);
+    }
   }
 }
 
@@ -35,6 +83,10 @@
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
+
+    @media (min-width: $xxl-max-body-width) {
+      width: 24%;
+    }
     
     .image-now {
       position: relative;
