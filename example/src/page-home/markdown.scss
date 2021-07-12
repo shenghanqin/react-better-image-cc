@@ -1,0 +1,426 @@
+/**
+ * 感谢巧克力很酷制作的主题
+ * 链接：https://juejin.cn/post/6909356292574281735
+ * https://github.com/QiaokeliHenku/juejin-markdown-theme-qkl/blob/main/xiaoxili.scss
+ */
+
+$monospace-font: Menlo,
+Monaco,
+Consolas,
+'Courier New',
+monospace;
+$line-space: 16px;
+$baseTxtColor:#2f3742;
+$titleColor: #2F5AFF;
+$strongColor: #6D8BFF;
+$codeColor: #FF3271;
+$codeBgColor: #fff4f4;
+$blockquoteBgColor: #f0fdff;
+$aColor: #2F5AFF;
+$lineColor: #bedcff;
+
+@mixin headTitle($padb: 4px, $fontSize: 24px, $mtop: 36px) {
+  padding-bottom: $padb;
+  margin-top: $mtop;
+  margin-bottom: 10px;
+  font-size: $fontSize;
+  line-height: 1.5;
+  color: $titleColor;
+}
+
+@mixin blockquoteColor {
+  color: #8c8c8c;
+  border-left: 4px solid $strongColor;
+  background-color: #f0fdff;
+}
+
+.markdown-body {
+  word-break: break-word;
+  line-height: 1.75;
+  font-weight: 400;
+  font-size: 14px;
+  overflow-x: hidden;
+  color: $baseTxtColor;
+
+  h1 {
+    @include headTitle(4px, 30px);
+  }
+
+  h2 {
+    position: relative;
+    padding-left: 16px;
+    padding-right: 10px;
+    @include headTitle(10px, 24px);
+    border-bottom: 1px solid #ececec;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin: -3px 8px 0 0;
+      background: url('https://image-hosting.xiaoxili.com/img/img/20201231/1942cc12adbcebcb940f59a3e6023252-3de225.png?imageView2/2/w/60') no-repeat center/contain
+    }
+  }
+
+  h3 {
+    position: relative;
+    @include headTitle(0, 20px, 30px);
+    padding-left: 6px;
+
+    &::before {
+      content: '»';
+      padding-right: 6px;
+      color: $strongColor;
+    }
+  }
+
+  h4 {
+    @include headTitle(0, 16px, 24px);
+    padding-left: 6px;
+  }
+
+  h5 {
+    @include headTitle(0, 14px, 18px);
+    padding-left: 6px;
+  }
+
+  h6 {
+    @include headTitle(0, 12px, 12px);
+    padding-left: 6px;
+  }
+
+  p {
+    line-height: inherit;
+    margin-top: $line-space;
+    margin-bottom: $line-space;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  hr {
+    position: relative;
+    width: 98%;
+    height: 1px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    background-image: linear-gradient(90deg, $aColor, rgba(255, 50, 113, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 50, 113, 0.3), $aColor);
+    border-width: 0;
+    overflow: visible;
+
+    &::after {
+      content: "";
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      display: inline-block;
+      width: 60px;
+      height: 20px;
+      background: #fff;
+      background-image: url(https://image-hosting.xiaoxili.com/img/img/20201231/1942cc12adbcebcb940f59a3e6023252-3de225.png?imageView2/2/w/60);
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      background-position-x: center;
+    }
+  }
+
+  code {
+    padding: .065em .4em;
+    font-family: $monospace-font;
+    font-size: .87em;
+    color: $codeColor;
+    word-break: break-word;
+    overflow-x: auto;
+    background-color: $codeBgColor;
+    border-radius: 2px;
+  }
+
+  pre {
+    font-family: $monospace-font;
+    overflow: auto;
+    position: relative;
+    line-height: 1.75;
+
+    >code {
+      display: block;
+      padding: 16px 12px;
+      margin: 0;
+      font-size: 12px;
+      color: #333;
+      word-break: normal;
+      overflow-x: auto;
+      background: #f8f8f8;
+
+      &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $lineColor;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $strongColor;
+        border-radius: 10px;
+      }
+    }
+  }
+
+  a {
+    position: relative;
+    text-decoration: none;
+    color: $aColor;
+    border-bottom: 1px solid $lineColor;
+
+    &:hover {
+      color: $aColor;
+      border-bottom-color: $aColor;
+    }
+
+    &:active {
+      color: $aColor;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: 100%;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      border-bottom: 1px solid $lineColor;
+      transition: top .3s, opacity .3s;
+      transform: translate3d(0, 0, 0);
+    }
+
+    &:hover::after {
+      top: 0;
+      opacity: 1;
+      border-bottom-color: $aColor;
+    }
+  }
+
+  table {
+    display: inline-block !important;
+    font-size: 12px;
+    width: auto;
+    max-width: 100%;
+    overflow: auto;
+    // border: 1px solid #c3e0fd;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    thead {
+      color: #000;
+      text-align: left;
+      font-size: 14px;
+      background: #f6f6f6;
+    }
+
+    tr:nth-child(2n) {
+      background-color: #f7fbff;
+    }
+
+    tr:hover {
+      background-color: #e0edf7;
+    }
+
+    th,
+    td {
+      padding: 12px 8px;
+      line-height: 24px;
+      border: 1px solid #c3e0fd;
+    }
+
+    th {
+      color: $titleColor;
+      background-color: #dff0ff;
+    }
+
+    td {
+      min-width: 120px;
+    }
+  }
+
+  blockquote {
+    @include blockquoteColor;
+    padding: 1px 20px;
+    margin: 22px 0;
+
+    &::after {
+      display: block;
+      content: '';
+    }
+
+    &>p {
+      margin: 10px 0;
+    }
+
+    &>b,
+    &>strong {
+      color: $strongColor;
+    }
+  }
+
+  b,
+  strong {
+    color: $strongColor;
+  }
+
+  i,
+  em {
+    color: #4fc3f7;
+  }
+
+  del {
+    color: #ccc;
+  }
+
+  ol,
+  ul {
+    padding-left: 28px;
+
+    li {
+      margin-bottom: 0;
+      list-style: inherit;
+
+      & .task-list-item {
+        list-style: none;
+
+        ul,
+        ol {
+          margin-top: 0;
+        }
+      }
+    }
+
+    ul,
+    ol {
+      margin-top: 4px;
+    }
+  }
+
+  ol li {
+    padding-left: 6px;
+  }
+
+  // details & summary
+  details {
+    &>summary {
+      outline: none;
+      color: #005bb7;
+      font-size: 20px;
+      font-weight: bolder;
+      border-bottom: 1px solid $lineColor;
+      cursor: pointer;
+    }
+
+    &>p {
+      padding: 10px 20px;
+      margin: 10px 0 0;
+      color: #666;
+      background-color: #f0fdff;
+      border: 2px dashed $strongColor;
+    }
+  }
+
+  // selection
+  h1::selection,
+  h2::selection,
+  h3::selection,
+  h4::selection,
+  h5::selection,
+  h6::selection {
+    color: $titleColor;
+    background-color: rgba(160, 200, 255, .15);
+  }
+
+  p::selection {
+    color: rgb(200, 0, 0);
+  }
+
+  a::selection,
+  b::selection,
+  strong::selection,
+  i::selection,
+  em::selection,
+  del::selection {
+    background-color: transparent;
+  }
+
+  code::selection {
+    background-color: #ffeaeb;
+  }
+
+  pre {
+    >code::selection {
+      background-color: rgba(160, 200, 255, .25);
+    }
+  }
+
+  ol,
+  ul {
+    ::selection {
+      background-color: rgba(160, 200, 255, .15);
+    }
+  }
+
+  input[type="checkbox"] {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: inherit;
+      height: inherit;
+      background: #cee9ff;
+      border: 1px solid $aColor;
+      border-radius: 2px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    &:checked {
+      &::after {
+        content: "\2713";
+        position: absolute;
+        top: -12px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        color: #e50232;
+        font-size: 20px;
+        font-weight: bold;
+        z-index: 2;
+      }
+    }
+  }
+
+  // @media
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+}
