@@ -127,7 +127,7 @@ class App extends React.Component<Props, State> {
             <table>
               <thead>
                 <tr>
-                  <td>设备名称</td>
+                  <th>设备名称</th>
                   <th>系统名称及版本</th>
                   <th>浏览器名称及版本</th>
                 </tr>
